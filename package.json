@@ -11,8 +11,7 @@
     "express",
     "body-parser",
     "ejs",
-    "dotenv",
-    "nodemailer"
+    "dotenv"
   ],
   "author": "Cristiano Franca",
   "license": "ISC",
@@ -21,8 +20,6 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "express-session": "^1.18.0",
-    "nodemailer": "^6.9.14",
     "nodemon": "^3.1.3"
   }
 }

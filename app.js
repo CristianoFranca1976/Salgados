@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const nodemailer = require('nodemailer');
 
 
 app.set("view engine", "ejs");
