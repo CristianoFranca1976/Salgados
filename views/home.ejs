@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Cristano Franca">
+  <meta name="description" content="Website sell Salgados in UK Oxford">
+  <meta name="robot" content="index, follow">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="<%= favicon %>" type="image/x-icon">
+  <title> <%= title %> </title>
+</head>
+<body>
+  <div id="container">
+    <%- include('partials/header') %>
+    <h3>Lista de Salgados</h3>
+    <main>
+      <div id="line-one" class="lines">
+        <% items.forEach(function(item) { %>
+      <div class="itens">
+        <img src="/<%= item.image.toLowerCase() %>" alt="<%= item.name %>" class="salgadosIMG" />
+        <div class="info">
+          <div class="nome">
+            <h2><%= item.name %></h2>
+            <form action="/inputs" method="get">
+              <input type="hidden" name="itemName" value="<%= item.name %>">
+            <button type="submit" class="basket" >
+              <img
+                src="basket.png"
+                alt="basket"
+                class="basketLogo"
+                id="btn-coxinha"
+              />
+            </button>
+           </form>
+          </div>
+          <p class="description">
+            <%= item.descricao %>
+          </p>
+        </div>
+      </div>
+      <% }); %>
+      </div>
+    </main>
+    <%- include('partials/contact') %>
+    <%- include('partials/footer') %>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
+</html>

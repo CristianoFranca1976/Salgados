@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Cristano Franca">
+  <meta name="description" content="Website sell Salgados in UK Oxford">
+  <meta name="robot" content="index, follow">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="<%= favicon %>" type="image/x-icon">
+  <title> <%= title %> </title>
+</head>
+<body>
+<main>
+  <div class="top">
+    <h2> <%= itemName %> </h2>
+    <img src="/<%= itemImage %>" alt="<%= itemName %>" id="imgBasket">
+  </div>
+  <div class="button">
+    <% if (errorMessage) { %>
+      <p style="color: red;"><%= errorMessage %></p>
+    <% } %>
+    <form action="/add-to-basket" method="post" class="form-pedido">
+      <input type="hidden" name="itemName" value="<%= itemName %>">
+      <input type="hidden" name="itemImage" value="<%= itemImage %>">
+      <input type="hidden" name="itemDescricao" value="<%= itemDescricao %>">
+      <input type="hidden" name="total" id="total-hidden">
+      <div class="tipos">
+        <label for="tipo">Tipo: </label>
+        <select name="tipo" id="tipo" title="tipo" required>
+          <option value="">Selecionar</option>
+          <option value="Frito">Frito</option>
+          <option value="Congelado">Congelado</option>
+        </select>
+        <label for="tamanho">Tamanho: </label>
+        <select name="tamanho" id="tamanho" title="select o tamanho" required>
+          <option value="">Selecionar</option>
+          <option value="Pequeno">Pequeno</option>
+          <option value="Médio">Médio</option>
+          <option value="Grande">Grande</option>
+        </select>
+        <label for="quantidade">Quantidade: </label>
+        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade" size="10" disabled>
+        <label for="entrega">Entrega: </label>
+        <select name="entrega" id="entrega" title="Tipo de entrega" required>
+          <option value="">Selecionar</option> 
+          <option value="Não">Não</option>
+          <option value="Sim">Sim</option>
+        </select>
+      </div>
+      <div class="total-div">
+        <p id="total">£ 00.00</p>
+      </div>
+      <div id="btns">
+        <a href="/" class="btn-adicionar" id="btn-voltar">Voltar</a>
+        <button type="submit" class="btn-adicionar" id="btn-adicionar">Adicionar</button>
+      </div>
+    </form>
+  </div>
+</main>
+<script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+  

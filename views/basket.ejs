@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Cristano Franca" />
+    <meta name="description" content="Website sell Salgados in UK Oxford" />
+    <meta name="robot" content="index, follow" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="<%= favicon %>" type="image/x-icon">
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("H99qsUdI3Ng2BIXNW");
+      })();
+    </script>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <main>
+      <form id="emailForm">
+        <h1>Envie seu pedido</h1>
+        <label for="name"
+          >Nome:
+          <input type="text" id="name" name="name" required />
+        </label>
+        <br />
+        <label for="email-order"
+          >Email:
+          <input type="email" id="email-order" name="email" required />
+        </label>
+        <br />
+        <label for="emailBody"
+          >Mensagem Opcional:
+          <textarea
+            id="emailBody"
+            placeholder="Duvidas, Comentarios, Perguntas e outros"
+          ></textarea>
+        </label>
+        <div id="invoice">
+          <div class="topEmail">
+            <img src="LetraC.png" alt="" class="logo" />
+            <h2>Invoice</h2>
+          </div>
+          <div class="table_component" role="region" tabindex="0">
+            <table id="myTable">
+              <caption>
+                Paty Salgados
+              </caption>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Descrição</th>
+                  <th>Total</th>
+                  <th>Deletar</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <% if (basket.length > 0) { %> <% basket.forEach(function(item,
+                index) { %>
+                <tr>
+                  <td><%= item.name %></td>
+                  <td>
+                    <%= item.tipo.charAt(0) %> / <%= item.tamanho.charAt(0) %> /
+                    <%= item.quantidade %> / <%= item.entrega.charAt(0) %>
+                  </td>
+                  <td class="total-item"><%= item.total %></td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn-delete"
+                      data-index="<%= index %>"
+                    >
+                      <img src="bin.png" alt="logo bin" class="basketLogo" />
+                    </button>
+                  </td>
+                </tr>
+                <% }); %> <% } else { %>
+                <tr>
+                  <td colspan="4">Cesta vazia.</td>
+                </tr>
+                <% } %>
+              </tbody>
+              <tfoot id="tfoot">
+                <tr>
+                  <td colspan="2">Total</td>
+                  <td id="total-invoice">£ 00.00</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <p class="warning">
+          Se a entrega for 'Sim', o valor não está incluído no total.
+        </p>
+        <div id="btns2">
+          <a href="/" class="btn-adicionar" id="btn-voltar">Voltar</a>
+          <form action="/emailForm" method="post">
+          <button type="submit" id="btn-enviar">Enviar</button>
+          </form>
+        </div>
+      </form>
+    </main>
+    <script>
+      function formatCurrency(value) {
+        return `£ ${parseFloat(value).toFixed(2)}`;
+      }
+
+      function calcularTotal() {
+        let total = 0;
+        const totalElements = document.querySelectorAll(
+          "#myTable tbody tr .total-item"
+        );
+        totalElements.forEach((element) => {
+          const valorTotal = parseFloat(element.textContent.replace("£", ""));
+          if (!isNaN(valorTotal)) {
+            total += valorTotal;
+          }
+        });
+        return total;
+      }
+
+      function atualizarTotal() {
+        const totalInvoice = document.getElementById("total-invoice");
+        totalInvoice.textContent = formatCurrency(calcularTotal());
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const deleteButtons = document.querySelectorAll(".btn-delete");
+        deleteButtons.forEach((button) => {
+          button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const index = button.getAttribute("data-index");
+            fetch(`/delete-item/${index}`, { method: "DELETE" })
+              .then((response) => {
+                if (response.ok) {
+                  console.log('SUCCESS!', response.status, response.text);
+                } else {
+                  console.error("Erro ao excluir item:", response);
+                }
+              })
+              .catch((error) => console.error("Erro ao excluir item:", error));
+          });
+        });
+
+        // Formatar os valores dos itens como moeda
+        const totalItems = document.querySelectorAll(".total-item");
+        totalItems.forEach((item) => {
+          item.textContent = formatCurrency(item.textContent);
+        });
+
+        atualizarTotal();
+      });
+
+      document
+        .getElementById("emailForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var nameValue = document.getElementById("name").value;
+          var emailValue = document.getElementById("email-order").value;
+          var tbody = document.getElementById("tbody").value;
+          var paty = "Paty Salgados";
+          var table = document.getElementById("myTable");
+          var rows = table
+            .getElementsByTagName("tbody")[0]
+            .getElementsByTagName("tr");
+          var tableData = "";
+          for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            if (cells.length > 0) {
+              var item = cells[0].innerText;
+              var description = cells[1].innerText;
+              var total = cells[2].innerText;
+              tableData +=
+                "Item: " +
+                item +
+                ", Descrição: " +
+                description +
+                ", Total: " +
+                total +
+                "\n";
+            }
+          }
+
+          var totalInvoice = document.getElementById("total-invoice").innerText;
+
+          var templateParams = {
+            to_email: emailValue,
+            message: tbody,
+            to_name: nameValue,
+            from_name: paty,
+            reply_to: emailValue,
+            table_data: tableData,
+            total_invoice: totalInvoice,
+          };
+
+          emailjs
+            .send("service_gwxrd8r", "template_8305up2", templateParams)
+            .then(
+              function (response) {
+                alert("SUCCESS!", response.status, response.text);
+                
+                window.location.href = '/'
+              },
+              function (error) {
+                alert("FAILED...", error);
+              }
+            );
+        });
+
+    </script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

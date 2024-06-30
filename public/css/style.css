@@ -1,0 +1,406 @@
+* {
+  text-decoration: none;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: yellow;
+}
+#container {
+  width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+header {
+  border: 5px ridge black;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+h1, h3 {
+  width: auto;
+  font-size: 4vh;
+  margin: 0;
+  text-align: center;
+}
+.logo, #logo1 {
+  border-radius: 50%;
+  width: 20vh;
+  height: 20vh;
+  box-shadow: 2px 2px 35px white;
+}
+.lines {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 10px 0;
+  gap: 10px;
+}
+.salgadosIMG {
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  transition: all ease-in-out 0.3s;
+  cursor: zoom-in;
+}
+.salgadosIMG:hover {
+  transform: scale(1.5);
+  transition: all ease-in-out 0.3s;
+}
+.itens {
+  border: 5px ridge black;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  gap: 15px;
+  padding: 5px;
+  text-align: center;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+h2 {
+  margin: 0;
+  font-size: 2.5vh;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: gold;
+  text-shadow: 2px 5px black;
+}
+.description {
+  font-size: 1.8vh;
+  font-family: monospace;
+}
+.nome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.basket {
+  position: relative;
+  padding: 0 15px;
+  border-radius: 5px;
+  background: gold;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.basketLogo {
+  width: 2vh;
+  height: 2vh;
+  transition: all ease-in-out 0.3s;
+}
+.basketLogo:hover {
+  transform: scale(1.2);
+  transition: all ease-in-out 0.3s;
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 5vh;
+}
+.logoNav {
+  width: 3vh;
+  transition: all ease-in-out 0.3s;
+}
+.logoNav:hover {
+  transform: scale(1.3);
+  transition: all ease-in-out 0.3s;
+}
+.autor p {
+  margin: 0;
+  font-size: 2vh;
+  font-family: fantasy;
+}
+.autor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.form-email {
+  border: 5px ridge black;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 10px;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  width: auto;
+  padding: 15px;
+}
+.button {
+  width: 100%;
+}
+#imgBasket {
+  border-radius: 50%;
+  width: 25vh;
+  height: 25vh;
+  box-shadow: 2px 2px 35px gold;
+}
+.tipos {
+  width: auto;
+  padding: 15px 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  background-color: gold;
+}
+.form-pedido {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.total-div {
+  max-width: auto;
+  height: auto;
+  padding: 15px;
+}
+#total {
+  text-align: center;
+  font-size: 5vh;
+}
+#btns, #btns1, #btns2{
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+.btn-delete {
+  color: black;
+  border: 1px solid rgb(17, 17, 17);
+  border-radius: 10px;
+  max-width:  100px;
+  padding: 5px 15px;
+  font-size: 1.5vh;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  background-color: gold;
+  text-align: center;
+}
+.btn-adicionar {
+  color: black;
+  border: 1px solid rgb(17, 17, 17);
+  border-radius: 10px;
+  padding: 5px 50px;
+  font-size: 2vh;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  background-color: gold;
+  text-align: center;
+}
+.btn-adicionar:hover,
+.delete:hover, .btn-delete:hover {
+  background-color: goldenrod;
+}
+.basket-salvo {
+  border: 5px solid black;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 25px 25px;
+  gap: 30px;
+  display: none;
+}
+input,
+select {
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  color: black;
+  font-size: 1.5vh;
+  width: 100%;
+}
+option {
+  background-color: gold;
+}
+input::placeholder,
+textarea::placeholder {
+  font-size: 1.4vh;
+  color: rgb(17, 17, 17);
+}
+#emailForm {
+  border: 5px ridge black;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 1000px;
+}
+label {
+  font-size: 2vh;
+}
+#invoice {
+  border: 5px ridge black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  height: auto;
+}
+#name,
+#email {
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
+.topEmail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  padding: 0 10px;
+}
+textarea {
+  background-color: transparent;
+  width: 100%;
+  height: 200px;
+  font-size: 2vh;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  resize: none;
+}
+textarea::placeholder {
+  color: black;
+}
+.table_component {
+  overflow: auto;
+  width: 100%;
+  height: auto;
+}
+
+.table_component table {
+  border: 1px solid #dededf;
+  height: auto;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 1px;
+  text-align: left;
+}
+
+.table_component caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 2vh;
+  font-weight: 600;
+  font-family: cursive;
+  margin-bottom: 20px;
+}
+
+.table_component th {
+  border: 1px solid #dededf;
+  background-color: gold;
+  color: #000000;
+  padding: 5px;
+  font-size: 2vh;
+}
+#tbody tr th{
+  background-color: transparent;
+}
+#tfoot tr td {
+  background-color: gold;
+}
+.table_component td {
+  border: 1px solid #dededf;
+  background-color: transparent;
+  color: #000000;
+  padding: 5px;
+  font-size: 2vh;
+  text-align: center;
+}
+#btn-enviar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px 35px;
+  border-radius: 10px;
+  background-color: gold;
+  cursor: pointer;
+  text-align: center;
+  font-size: 2vh;
+  max-width: 200px;
+}
+.warning {
+  color: rgb(194, 55, 55);
+  font-size: 2vh;
+  font-weight: 700;
+}
+@media screen and (max-width: 800px) {
+    .lines {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .itens {
+    width: auto;
+    height: 160px;
+  }
+  .tipos {
+    flex-direction: column;
+    width: 100%;
+  }
+  #btns, #btns1 {
+    flex-direction: column;
+    gap: auto;
+    width: 100%;
+  }
+  #emailForm {
+    padding: 10px;
+  }
+  main {
+    margin-top: 15%;
+  }
+  .topEmail {
+  flex-direction: column;
+  }
+}
+
+
+@media screen and (max-width: 1400px) {
+  #container {
+    width: 100%;
+  }
+}
